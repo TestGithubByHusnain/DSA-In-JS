@@ -59,4 +59,11 @@ const shoppingCart = [
 }
 ]
 const total= shoppingCart.reduce((acc, item) =>acc+ item.price, 0 )
-console.log(total)
+// console.log(total)
+const words = ["hello", "world"];
+const countnumbers= words.reduce((acc, currval) => acc + currval.length,0)
+console.log(countnumbers);
+
+
+ 
+
