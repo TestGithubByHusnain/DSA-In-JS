@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Digital Clock</title>
+
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #0f0f0f;
+      color: #e0e0e0;
+      font-family: 'Segoe UI', sans-serif;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      padding: 20px;
+      background-color: #1a1a1a;
+      box-shadow: 0 2px 8px rgba(255, 255, 255, 0.05);
+    }
+
+    nav a {
+      color: #ccc;
+      text-decoration: none;
+      font-size: 18px;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #00ffc8;
+    }
+
+    .center {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+    }
+
+    #banner {
+      font-size: 24px;
+      color: #aaa;
+      margin-bottom: 20px;
+      letter-spacing: 1px;
+    }
+
+    #clock {
+      font-size: 48px;
+      background-color: #00ffc8;
+      color: #0f0f0f;
+      padding: 20px 60px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0, 255, 200, 0.5);
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+
+    @media (max-width: 500px) {
+      #clock {
+        font-size: 36px;
+        padding: 15px 40px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="/">Home</a>
+    <a href="/">About</a>
+  </nav>
+
+  <div class="center">
+    <div id="banner">🕒 Your Local Time</div>
+    <div id="clock">00:00:00</div>
+  </div>
+
+  <script src="index.js"></script>
+</body>
+</html>
