@@ -1,0 +1,124 @@
+/* ===== Reset & Base ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #212121;
+  color: #ffffff;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* ===== Navbar ===== */
+nav {
+  background-color: #2c2c2c;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.05);
+}
+
+nav a {
+  color: #ddd;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: #00ffc8;
+}
+
+/* ===== Wrapper ===== */
+#wrapper {
+  max-width: 500px;
+  margin: 40px auto;
+  background: #2b2b2b;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 255, 200, 0.1);
+  text-align: center;
+}
+
+#wrapper h1 {
+  font-size: 28px;
+  margin-bottom: 10px;
+  color: #00ffc8;
+}
+
+#wrapper p {
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: #cccccc;
+}
+
+/* ===== Form ===== */
+.form {
+  margin-top: 20px;
+}
+
+#guess {
+  display: block;
+  font-size: 16px;
+  margin-bottom: 8px;
+  text-align: left;
+  color: #ffffff;
+}
+
+#guessField {
+  width: 100%;
+  padding: 12px 15px;
+  font-size: 16px;
+  border: 2px solid #555;
+  border-radius: 8px;
+  background-color: #333;
+  color: #fff;
+  outline: none;
+  transition: border 0.3s ease;
+}
+
+#guessField:focus {
+  border-color: #00ffc8;
+}
+
+/* ===== Submit Button ===== */
+.guessSubmit {
+  margin-top: 15px;
+  padding: 12px 20px;
+  font-size: 16px;
+  background-color: #00ffc8;
+  border: none;
+  border-radius: 8px;
+  color: #212121;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.guessSubmit:hover {
+  background-color: #00c3a0;
+}
+
+/* ===== Result Section ===== */
+.resultParas {
+  margin-top: 25px;
+  background-color: #1a1a1a;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.resultParas p {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.lowOrHi {
+  font-size: 18px;
+  font-weight: bold;
+  color: #ffcc00;
+}
