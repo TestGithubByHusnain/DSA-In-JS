@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JavaScript Events Playground</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      padding: 30px;
+      background-color: #f4f4f4;
+    }
+    section {
+      margin-bottom: 30px;
+      padding: 20px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      color: #333;
+    }
+    input, textarea, button, select {
+      padding: 10px;
+      margin-top: 10px;
+      margin-right: 10px;
+      font-size: 16px;
+    }
+    #hoverBox {
+      width: 200px;
+      height: 100px;
+      background-color: #00bcd4;
+      margin-top: 10px;
+      border-radius: 5px;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>JavaScript Events Playground</h1>
+
+  <!-- CLICK EVENT -->
+  <section>
+    <h2>Click & Double Click</h2>
+    <button id="clickBtn">Click Me</button>
+    <button id="dblClickBtn">Double Click Me</button>
+  </section>
+
+  <!-- MOUSE EVENTS -->
+  <section>
+    <h2>Mouseover / Mouseout</h2>
+    <div id="hoverBox">Hover over me</div>
+  </section>
+
+  <!-- KEYBOARD EVENTS -->
+  <section>
+    <h2>KeyDown / KeyUp</h2>
+    <input type="text" id="keyboardInput" placeholder="Type something..." />
+    <p id="keyboardOutput"></p>
+  </section>
+
+  <!-- INPUT & CHANGE EVENTS -->
+  <section>
+    <h2>Input / Change</h2>
+    <input type="text" id="textInput" placeholder="Type here" />
+    <select id="selectBox">
+      <option value="">Select something</option>
+      <option value="Apple">Apple</option>
+      <option value="Banana">Banana</option>
+      <option value="Mango">Mango</option>
+    </select>
+    <p id="inputOutput"></p>
+  </section>
+
+  <!-- FOCUS / BLUR EVENTS -->
+  <section>
+    <h2>Focus / Blur</h2>
+    <input type="text" id="focusInput" placeholder="Click me then click out" />
+    <p id="focusMessage"></p>
+  </section>
+
+  <!-- FORM SUBMIT EVENT -->
+  <section>
+    <h2>Form Submit</h2>
+    <form id="eventForm">
+      <input type="text" placeholder="Your name" required />
+      <button type="submit">Submit</button>
+    </form>
+    <p id="formMessage"></p>
+  </section>
+
+  <script>
+    // Click & Double Click
+    document.getElementById("clickBtn").addEventListener("click", () => {
+      alert("You clicked the button!");
+    });
+
+    document.getElementById("dblClickBtn").addEventListener("dblclick", () => {
+      alert("You double-clicked!");
+    });
+
+    // Mouseover / Mouseout
+    const hoverBox = document.getElementById("hoverBox");
+
+    hoverBox.addEventListener("mouseover", () => {
+      hoverBox.style.backgroundColor = "#4caf50";
+      hoverBox.textContent = "Mouse Over";
+    });
+
+    hoverBox.addEventListener("mouseout", () => {
+      hoverBox.style.backgroundColor = "#00bcd4";
+      hoverBox.textContent = "Hover over me";
+    });
+
+    // KeyDown / KeyUp
+    const keyboardInput = document.getElementById("keyboardInput");
+    const keyboardOutput = document.getElementById("keyboardOutput");
+
+    keyboardInput.addEventListener("keydown", (e) => {
+      keyboardOutput.textContent = `Key Down: ${e.key}`;
+    });
+
+    keyboardInput.addEventListener("keyup", (e) => {
+      keyboardOutput.textContent = `Key Up: ${e.key}`;
+    });
+
+    // Input / Change
+    const textInput = document.getElementById("textInput");
+    const selectBox = document.getElementById("selectBox");
+    const inputOutput = document.getElementById("inputOutput");
+
+    textInput.addEventListener("input", () => {
+      inputOutput.textContent = `You typed: ${textInput.value}`;
+    });
+
+    selectBox.addEventListener("change", () => {
+      inputOutput.textContent = `You selected: ${selectBox.value}`;
+    });
+
+    // Focus / Blur
+    const focusInput = document.getElementById("focusInput");
+    const focusMessage = document.getElementById("focusMessage");
+
+    focusInput.addEventListener("focus", () => {
+      focusMessage.textContent = "Input is focused.";
+    });
+
+    focusInput.addEventListener("blur", () => {
+      focusMessage.textContent = "Input lost focus.";
+    });
+
+    // Form Submit
+    const form = document.getElementById("eventForm");
+    const formMessage = document.getElementById("formMessage");
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault(); // prevent page reload
+      formMessage.textContent = "✅ Form submitted successfully!";
+    });
+  </script>
+
+</body>
+</html>
