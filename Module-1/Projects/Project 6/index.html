@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Key Tracker with Speed & Restart</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #1c1c1c;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      min-height: 100vh;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .insert {
+      text-align: center;
+      width: 100%;
+      max-width: 700px;
+    }
+
+    .message {
+      font-size: 24px;
+      color: #aaa;
+      margin-bottom: 15px;
+    }
+
+    table {
+      border-collapse: collapse;
+      margin: 20px auto;
+      width: 100%;
+    }
+
+    th, td {
+      padding: 12px 15px;
+      border: 1px solid #e7e7e7;
+      text-align: center;
+    }
+
+    th {
+      background-color: #333;
+    }
+
+    td {
+      background-color: #444;
+    }
+
+    .output-box, .speed-box {
+      margin-top: 20px;
+      padding: 20px;
+      background-color: #2b2b2b;
+      border: 2px dashed #fff;
+      font-size: 18px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .btn {
+      margin-top: 15px;
+      padding: 10px 20px;
+      font-size: 16px;
+      font-weight: bold;
+      background-color: #ffffff;
+      color: #000;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .btn:hover {
+      background-color: #ddd;
+    }
+  </style>
+</head>
+<body>
+  <div class="insert">
+    <div class="message" id="msg">Press any key to begin (10 max) ⌨️</div>
+
+    <table id="keyTable">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Key</th>
+          <th>KeyCode</th>
+          <th>Code</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Rows go here -->
+      </tbody>
+    </table>
+
+    <div class="output-box" id="output" style="display: none;"></div>
+    <div class="speed-box" id="speed" style="display: none;"></div>
+    <button class="btn" onclick="restart()">🔄 Restart</button>
+  </div>
+
+  <script>
+    const tableBody = document.querySelector("#keyTable tbody");
+    const outputBox = document.getElementById("output");
+    const speedBox = document.getElementById("speed");
+    const msg = document.getElementById("msg");
+
+    let keyData = [];
+    let startTime = null;
+
+    window.addEventListener("keydown", (e) => {
+      // Block input after 10 keys
+      if (keyData.length >= 10) return;
+
+      // Start timer on first key
+      if (!startTime) startTime = new Date();
+
+      const keyInfo = {
+        key: e.key === " " ? "Space" : e.key,
+        keyCode: e.keyCode,
+        code: e.code
+      };
+
+      keyData.push(keyInfo);
+
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td>${keyData.length}</td>
+        <td>${keyInfo.key}</td>
+        <td>${keyInfo.keyCode}</td>
+        <td>${keyInfo.code}</td>
+      `;
+      tableBody.appendChild(row);
+
+      // If 10 keys are pressed
+      if (keyData.length === 10) {
+        const endTime = new Date();
+        const timeDiffSec = (endTime - startTime) / 1000;
+        const totalChars = keyData.map(k => k.key.length).reduce((a, b) => a + b, 0);
+
+        const wpm = Math.round((totalChars / 5 / timeDiffSec) * 60); // word = 5 chars
+
+        const keysPressed = keyData.map(item => item.key).join(" - ");
+        outputBox.style.display = "block";
+        outputBox.innerHTML = `<strong>Keys Entered:</strong><br>${keysPressed}`;
+
+        speedBox.style.display = "block";
+        speedBox.innerHTML = `<strong>Typing Speed:</strong> ${wpm} WPM`;
+
+        msg.innerText = "Typing complete! 🔥";
+      }
+    });
+
+    function restart() {
+      keyData = [];
+      startTime = null;
+      tableBody.innerHTML = "";
+      outputBox.style.display = "none";
+      speedBox.style.display = "none";
+      msg.innerText = "Press any key to begin (10 max) ⌨️";
+    }
+  </script>
+</body>
+</html>
